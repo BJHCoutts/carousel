@@ -29,7 +29,9 @@ ul {
 }
 
 .carousel__track {
-
+	position: relative;
+	height: 100%;
+	transition: transform .5s ease-in;
 }
 
 .carousel__slide {

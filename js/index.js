@@ -9,13 +9,15 @@ const dots = Array.from(carouselNav.children)
 
 const slideWidth = slides[0].getBoundingClientRect().width;
 
-const setSlidesPosition = (slide, index) => {
-	slide.style.left = `${slideWidth * index} px`
+const setSlidePosition = (slide, index) => {
+	slide.style.left = `${slideWidth * index}px`
 }
 
 slides.forEach(setSlidePosition);
 
 nextButton.addEventListener('click', e => {
-	const currentSlide = track.document.querySelector('.current-slide')
-	const 
-}
+	const currentSlide = track.querySelector('.current-slide')
+	const nextSlide = currentSlide.nextElementSibling
+	const amountToMove = nextSlide.style.left
+	track.style.transform = `translateX(-${amountToMove})`
+})
