@@ -23,9 +23,8 @@ ul {
 
 .carousel__track-container {
 	position: relative;
-	background-color: blueviolet;
-	/* padding: 10px; */
 	height: 100%;
+	overflow: hidden;
 }
 
 .carousel__track {
