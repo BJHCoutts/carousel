@@ -1,12 +1,12 @@
 const track = document.querySelector('.carousel__track')
-const slides = Array.from(track.children)
+const slides = [...track.children]
 
 const prevButton = document.querySelector('.carousel__button--left') 
 const nextButton = document.querySelector('.carousel__button--right') 
 
 const carouselNav = document.querySelector('.carousel__nav')
 
-const dots = Array.from(carouselNav.children)
+const dots = [...carouselNav.children]
 
 const slideWidth = slides[0].getBoundingClientRect().width;
 
@@ -16,22 +16,22 @@ const setSlidePosition = (slide, index) => {
 
 slides.forEach(setSlidePosition);
 
-const moveToSlide = () => {
-	
+const moveToSlide = (track, currentSlide, targetSlide) => {
+	track.style.transform = `translateX(-${targetSlide.style.left})`
+	currentSlide.classList.remove('current-slide')
+	targetSlide.classList.add('current-slide')
 }
 
-nextButton.addEventListener('click', e => {
-	
+prevButton.addEventListener('click', e => {
 	const currentSlide = track.querySelector('.current-slide')
+	const prevSlide = currentSlide.previousElementSibling
 
+	moveToSlide(track, currentSlide, prevSlide)
+})
+
+nextButton.addEventListener('click', e => {
+	const currentSlide = track.querySelector('.current-slide')
 	const nextSlide = currentSlide.nextElementSibling
 
-	const amountToMove = nextSlide.style.left
-	
-	track.style.transform = `translateX(-${amountToMove})`
-	
-	currentSlide.classList.remove('current-slide')
-	
-	nextSlide.classList.add('current-slide')
-
+	moveToSlide(track, currentSlide, nextSlide)
 })
